@@ -1,0 +1,27 @@
+#include<stdio.h>
+struct ad_hoc{
+  ullint ull;
+  float somp;
+
+};
+
+float moyenne_pondérée(arbre a){
+  ad_hoc st;
+  st.somp=0.0;
+  st.ull=0.0;
+  st=moyenne_pondérée_it(a, st);
+  return st.somp / (float)st.ull;
+}
+
+ad_hoc moyenne_pondérée_it(arbre a,ad_hoc st){
+  int i;
+  if(!a)return ad_hoc;
+  st.somp+= a->go * a->val;
+  st.ull+= a->go;
+  for(i=0;i<NBF;i++)st=moyenne_pondérée_it(a,st);
+
+  return ad_hoc;
+
+
+
+}

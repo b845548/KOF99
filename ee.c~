@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+SDL_Surface *ecran, *imageDeFond, *zozor;
+SDL_Surface * iori0;
+SDL_Surface * iori1;
+SDL_Surface * iori2;
+SDL_Surface * iori3;
+SDL_Surface * iori4;
+SDL_Surface * iori5;
+SDL_Surface * iori6;
+SDL_Surface * iori7;
+SDL_Surface * iori8;
+SDL_Surface * iori9;
+void init(void){
+    SDL_Init(SDL_INIT_VIDEO);
+    ecran = SDL_SetVideoMode(760, 225, 32, SDL_HWSURFACE);
+    imageDeFond = IMG_Load("kof99.gif");
+    iori0 = IMG_Load("Iori Yagami_0.png");
+    
+    iori1 = IMG_Load("Iori Yagami_1.png");
+    
+    iori2 = IMG_Load("Iori Yagami_2.png");
+    
+    iori3 = IMG_Load("Iori Yagami_3.png");
+    
+    iori4 = IMG_Load("Iori Yagami_4.png");
+    
+    iori5 = IMG_Load("Iori Yagami_5.png");
+   
+    iori6 = IMG_Load("Iori Yagami_6.png");
+    iori7 = IMG_Load("Iori Yagami_7.png");
+    iori8 = IMG_Load("Iori Yagami_8.png"); 
+    iori9 = IMG_Load("Iori Yagami_9.png");
+    
+}
+void input_handle(void){// pour sortir de le boucle while
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
+        case SDL_QUIT:
+            SDL_Quit();
+            exit(0);
+            break;
+        }
+    }
+}
+
+void anime(void){
+    SDL_Rect positionFond, positionZozor;
+    int avanceX = 1, avanceY = 1; // Ces variables diront si zozor doit avancer ou reculer.
+    SDL_Rect pos_iori;
+    int i=0;
+    pos_iori.x=550;
+    pos_iori.y=100;
+    positionFond.x = 0;
+    positionFond.y = 0;
+    positionZozor.x = 0;
+    positionZozor.y = 0;
+    while(1){
+      
+        SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond); // Dessiner le fond
+
+	if(i==0)SDL_BlitSurface(iori0, NULL, ecran, &pos_iori);
+	
+if(i==1)SDL_BlitSurface(iori1, NULL, ecran, &pos_iori);
+if(i==2)SDL_BlitSurface(iori2, NULL, ecran, &pos_iori);
+if(i==3)SDL_BlitSurface(iori3, NULL, ecran, &pos_iori);
+if(i==4)SDL_BlitSurface(iori4, NULL, ecran, &pos_iori);
+if(i==5)SDL_BlitSurface(iori5, NULL, ecran, &pos_iori);
+if(i==6)SDL_BlitSurface(iori6, NULL, ecran, &pos_iori);
+if(i==7)SDL_BlitSurface(iori7, NULL, ecran, &pos_iori);
+if(i==8)SDL_BlitSurface(iori8, NULL, ecran, &pos_iori);
+if(i==9)SDL_BlitSurface(iori9, NULL, ecran, &pos_iori);
+							      
+    
+//posiori.x+=5;
+	/*
+      
+        SDL_BlitSurface(imageDeFond, NULL, ecran, &positionFond); /
+        SDL_BlitSurface(zozor, NULL, ecran, &positionZozor); // Dessiner zozor
+        if (avanceX) {
+            positionZozor.x++; // Si avance est à 1 alors on incrémente x
+        }
+	else{
+            positionZozor.x--; // Sinon on décrémente x 
+        }
+        if (avanceY){
+            positionZozor.y++;
+        }
+	else{
+            positionZozor.y--;
+        }
+        if (positionZozor.x == ecran->w - zozor->w - 1) avanceX = 0;
+        else if (positionZozor.x == 0) avanceX = 1;
+        if (positionZozor.y == ecran->h - zozor->h - 1)
+            avanceY = 0;
+        else if (positionZozor.y == 0)
+	avanceY = 1;*/
+	SDL_Flip(ecran); // On affiche réellement l'image.
+        input_handle();
+	i++;
+	if(i==10)i=0;
+        SDL_Delay(60);
+
+    }
+
+}
+
+int main(void)
+
+{
+
+    init();
+
+    anime();
+
+    return 0;
+
+}
